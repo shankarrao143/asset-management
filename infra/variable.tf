@@ -1,5 +1,6 @@
 variable "amiid"{
-    default = ""
+    default = "ami-0b09627181c8d5778
+"
 }
 
 variable "region"{
