@@ -20,13 +20,13 @@ jobs:
           audience: sts.amazonaws.com
 
       - name: Print environment variables
-        run: |
-          echo "Region: ${{ env.AWS_REGION }}"
-          echo "Repository: ${{ env.ECR_REPOSITORY }}"
         env:
           AWS_REGION: ap-south-1
           ECR_REPOSITORY: my-ecr-repo
           ECS_SERVICE: my-ecs-service
           ECS_CLUSTER: my-ecs-cluster
           ECS_TASK_DEFINITION: my-task-def
-          CONTAINER_NAME: my-container
+          CONTAINER_NAME: my-container
+        run: |
+          echo "Region: $AWS_REGION"
+          echo "Repository: $ECR_REPOSITORY"
