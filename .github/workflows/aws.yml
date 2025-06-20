@@ -1,12 +1,32 @@
-- name: Configure AWS credentials
-  uses: aws-actions/configure-aws-credentials@v1
-  with:
-    aws-region: ap-south-1
-    audience: sts.amazonaws.com
-  env:
-    AWS_REGION: ap-south-1
-    ECR_REPOSITORY: my-ecr-repo
-    ECS_SERVICE: my-ecs-service
-    ECS_CLUSTER: my-ecs-cluster
-    ECS_TASK_DEFINITION: my-task-def
-    CONTAINER_NAME: my-container
+name: Configure AWS credentials
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ap-south-1
+          audience: sts.amazonaws.com
+
+      - name: Print environment variables
+        run: |
+          echo "Region: ${{ env.AWS_REGION }}"
+          echo "Repository: ${{ env.ECR_REPOSITORY }}"
+        env:
+          AWS_REGION: ap-south-1
+          ECR_REPOSITORY: my-ecr-repo
+          ECS_SERVICE: my-ecs-service
+          ECS_CLUSTER: my-ecs-cluster
+          ECS_TASK_DEFINITION: my-task-def
+          CONTAINER_NAME: my-container
