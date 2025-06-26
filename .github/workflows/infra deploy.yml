@@ -1,4 +1,4 @@
-name: Terraform EC2 Infra Deployment
+name: Terraform EC2 Infra Deployment1
 
 on:
   push:
